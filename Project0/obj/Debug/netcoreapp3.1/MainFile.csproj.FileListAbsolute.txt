@@ -1,0 +1,11 @@
+C:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.csprojAssemblyReference.cache
+C:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.AssemblyInfoInputs.cache
+C:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.AssemblyInfo.cs
+C:\Revature\paule-project0\Project0\bin\Debug\netcoreapp3.1\MainFile.exe
+C:\Revature\paule-project0\Project0\bin\Debug\netcoreapp3.1\MainFile.deps.json
+C:\Revature\paule-project0\Project0\bin\Debug\netcoreapp3.1\MainFile.runtimeconfig.json
+C:\Revature\paule-project0\Project0\bin\Debug\netcoreapp3.1\MainFile.runtimeconfig.dev.json
+C:\Revature\paule-project0\Project0\bin\Debug\netcoreapp3.1\MainFile.dll
+C:\Revature\paule-project0\Project0\bin\Debug\netcoreapp3.1\MainFile.pdb
+C:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.dll
+C:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.pdb
