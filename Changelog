@@ -12,4 +12,31 @@
     just realized I didnt use the creators at all
         need to rewrite the code to include them or delete them
     heavy console based code in input collector and main manager
-    build ends upon successfully logging in
+    build ends upon successfully entering a valid username
+
+3/8/20
+    Added stockcreator
+    personcreator is now utilized
+    planned out initialization of initial user base and info fields (not implemented yet)
+    fixed bug with mainfile class name
+    removed creatorparent
+        creators are going to be too different from each other to have a parent class
+        and if there was a parent class, method names would be too generic to have clear code
+    added more blacklist words
+
+3/9/20
+    Now asks for password after username
+    Added initialization of existing users with manager and creator creation
+    moved name and location list to creator for more logical code placement
+    reworked some redundant method calling
+    set many fields and references to private
+    reworked person creation to personcreator, as well as the methods involved
+    removed redundant managers
+    began a menu system after logging in
+        currently you can go to:
+            store
+            history
+            account
+            admin
+            (or quit)
+    started store menu and implimentation

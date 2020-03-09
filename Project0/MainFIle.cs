@@ -4,21 +4,26 @@ using Managers;
 
 namespace MainFile
 {
-    class StoreCreator
+    class MainFile
     {
         static void Main(string[] args)
         {
 
             var MyMainManager = new MainManager();
             MyMainManager.Initialize();
+            MyMainManager.MainMenu();
+
+
+
+            Console.WriteLine("You have reached the end of the current build.");
         }
     }
 }
 
 /*
 TODO place orders to store locations for customers
-TODO add a new customer
-TODO search customers by name
+TODO add a new customer (DONE)
+TODO search customers by name (DONE)
 TODO display details of an order
 TODO display all order history of a store location
 TODO display all order history of a customer

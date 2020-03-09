@@ -8,6 +8,6 @@ namespace Managers
 
         abstract public bool CheckFor(string x);
 
-        abstract public Object Get(string x);
+        abstract public Object Get(String x);
     }
 }

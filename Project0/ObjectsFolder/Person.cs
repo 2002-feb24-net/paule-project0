@@ -7,6 +7,7 @@ namespace Objects
         private string name;
         private string location;
         private string password;
+        private bool EmployeeTag;
 
         public void SetName(string x)
         {
@@ -36,6 +37,16 @@ namespace Objects
         public string GetPassword()
         {
             return this.password;
+        }
+
+        public void SetEmployeeTag(bool x)
+        {
+            this.EmployeeTag = x;
+        }
+
+        public bool GetEmployeeTag()
+        {
+            return this.EmployeeTag;
         }
     }
 }

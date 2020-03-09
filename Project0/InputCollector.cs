@@ -16,7 +16,7 @@ namespace MainFile
         option class can create another inputcollector if needed (meaning we cant have constructor methods if we do that)
         */
 
-        List<string> BadNameList = new List<string> {"This is going to be a long throwaway string that censors the words for anyone looking a this code in visual studio code. Yes this is a very very simple censor system but you get the idea.                                      ","fuck","ass","bitch","penis","vagina","nigger","negro","bastard","cunt","faggot","fag","retard","pussy","testicle","cock","whore","blowjob","idiot","slut","chink"};
+        List<string> BadNameList = new List<string> {"This is going to be a long throwaway string that censors the words for anyone looking a this code in visual studio code. Yes this is a very very simple censor system but you get the idea.                                      ","fuck","ass","bitch","penis","vagina","nigger","negro","bastard","cunt","faggot","fag","retard","pussy","testicle","cock","whore","blowjob","idiot","slut","chink","dildo","masturbate","boob","boobies","booby","boobys","@$$","cuck","autism","autistic"};
         public string GetUserName()
         {
             Console.Write("Username: ");
@@ -147,6 +147,40 @@ namespace MainFile
             }
 
             return true;
+        }
+
+        public string GetPassword()
+        {
+            Console.WriteLine("Please enter your password.");
+            Console.Write("Password: ");
+            return Console.ReadLine();
+        }
+
+
+        //! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        //! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX END OF INITIALIZE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        //! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+
+        public int ChooseMainMenu()
+        {
+            Console.WriteLine("Please choose one of the following options.");
+            string[] options = new string[] {"SHOP","HISTORY","ACCOUNT","ADMIN","QUIT"};
+            for (int i = 0 ; i<options.Length;i++)
+            {
+                Console.Write(i+1 + " ");
+                Console.WriteLine(options[i]);
+            }
+            int input = 0;
+            while (input < 1)
+            {
+                input = GetNumber();
+                if (input > options.Length || input <= 0)
+                {
+                    Console.WriteLine("That number is not on the list!");
+                    input = 0;
+                }
+            }
+            return input;
         }
     }
 }

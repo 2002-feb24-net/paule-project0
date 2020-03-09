@@ -1,14 +1,18 @@
 using System;
 using MainFile;
+using Creators;
 
 namespace Managers
 {
     class MainManager
     {
-        InputCollector MyInputCollector = new InputCollector();
-        PersonManager MyPersonManager = new PersonManager();
-        StoreManager MyStoreManager = new StoreManager();
-        OrderManager MyOrderManager = new OrderManager();
+        private InputCollector MyInputCollector = new InputCollector();
+        private PersonManager MyPersonManager = new PersonManager();
+        private StoreManager MyStoreManager = new StoreManager();
+        private StoreCreator MyStoreCreator = new StoreCreator();
+        private OrderManager MyOrderManager = new OrderManager();
+        private OrderCreator MyOrderCreator = new OrderCreator();
+        private MenuManager MyMenuManager = new MenuManager();
         public void Initialize()
         {
             WelcomeMessage();
@@ -17,15 +21,21 @@ namespace Managers
             while (!VerifiedUser)
             {
                 input = MyInputCollector.GetUserName();
+                MyPersonManager.SetCurrentUser(MyPersonManager.GetUser(input));
                 VerifiedUser = Verify(MyPersonManager.CheckFor(input));
             }
-            Console.WriteLine("You have reached the end of the current build.");
+            VerifiedUser = false;
+            while (!VerifiedUser)
+            {
+                input = MyInputCollector.GetPassword();
+                VerifiedUser = MyPersonManager.CheckCurrentPassword(input);
+            }
         }
 
         private void WelcomeMessage()
         {
             Console.Clear();
-            Console.WriteLine("Hello and welcome to Paul's (not) Sketchy Used Goods Store!");
+            Console.WriteLine("Hello and welcome to Paul's Totally (not) Sketchy Used Goods!");
             Console.WriteLine("Please log in! If you do not have an account please type: SIGNUP");
         }
 
@@ -124,7 +134,7 @@ namespace Managers
                 }
             }
 
-            MyPersonManager.Add(username:NewUsername,location:NewLocation,password:NewPassword);
+            MyPersonManager.AddPerson(username:NewUsername,location:NewLocation,password:NewPassword,employee:false);
 
             Console.WriteLine("Username: {0}",NewUsername);
             Console.WriteLine("Location: {0}",NewLocation);
@@ -134,6 +144,89 @@ namespace Managers
             Console.WriteLine("Press enter to continue.");
             Console.WriteLine(" ");
             Console.ReadLine();
-        }   
+        } 
+
+        //! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        //! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX END OF INITIALIZE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        //! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  
+
+        public void MainMenu(int choice = 0)
+        {
+            Console.Clear();
+            bool finished = false;
+            while (!finished)
+            {
+                if(choice == 0)
+                {
+                    //main
+                    WelcomeMessageMenu(0);
+                    choice = MyInputCollector.ChooseMainMenu();
+                }
+                else if (choice == 1)
+                {
+                    //shop
+                    WelcomeMessageMenu(1);
+                    MyStoreManager.Initialize();
+                    MyStoreManager.ShopTopicChoice(MyInputCollector.GetNumber());
+                }
+                else if (choice == 2)
+                {
+                    //history
+                    WelcomeMessageMenu(2);
+                    MyOrderManager.GetUserHistory();
+                }
+                else if (choice == 3)
+                {
+                    //account
+                    WelcomeMessageMenu(3);
+                    MyPersonManager.EditAccountDetails();
+                }
+                else if (choice == 4)
+                {
+                    //admin
+                    WelcomeMessageMenu(4);
+                    if(MyPersonManager.CheckEmployee())
+                    {
+                        MyStoreManager.EmployeeInitialize();
+                    }
+                }
+                else if (choice == 5)
+                {
+                    //quit
+                    WelcomeMessageMenu(5);
+                    finished = true;
+                }
+            }
+        }
+
+        private void WelcomeMessageMenu(int x)
+        {
+            Console.Clear();
+            if (x == 0)
+            {
+                Console.WriteLine("You have been redirected to: MAIN MENU");
+            }
+            else if (x == 1)
+            {
+                Console.WriteLine("You have been redirected to: SHOP");
+            }
+            else if (x == 2)
+            {
+                Console.WriteLine("You have been redirected to: HISTORY");
+            }
+            else if (x == 3)
+            {
+                Console.WriteLine("You have been redirected to: ACCOUNT");
+            }
+            else if (x == 4)
+            {
+                Console.WriteLine("You have been redirected to: ADMIN");
+            }
+            else if (x == 5)
+            {
+                Console.WriteLine("Stop by again soon!");
+                Console.WriteLine("We get new items all the time.");
+            }
+        }
     }
 }
