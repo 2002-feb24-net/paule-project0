@@ -91,5 +91,12 @@ namespace Managers
             Console.WriteLine();
             Console.Write("I'm interested in: ");
         }
+
+        public int ShopTopicChoice()
+        {
+            // "Jewelry","Electronics (Non-Phone)","Purses","Wallets","Phones","Household Items","Cars","Gardening Tools","Back"
+            
+            IndexOutOfRangeException 
+        }
     }
 }

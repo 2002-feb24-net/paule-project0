@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\heath\\.nuget\\packages\\": {}
+    "C:\\Users\\Paul Edwards\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
+      "projectUniqueName": "d:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
       "projectName": "MainFile",
-      "projectPath": "C:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
-      "packagesPath": "C:\\Users\\heath\\.nuget\\packages\\",
-      "outputPath": "C:\\Revature\\paule-project0\\Project0\\obj\\",
+      "projectPath": "d:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
+      "packagesPath": "C:\\Users\\Paul Edwards\\.nuget\\packages\\",
+      "outputPath": "d:\\Revature\\paule-project0\\Project0\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\heath\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Paul Edwards\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
