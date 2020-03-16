@@ -1,9 +1,18 @@
 using System;
+using Objects;
 
 namespace Creators
 {
     class StockCreator
     {
-        //purely for making new person classes, and then returning them. Might be slightly redundant and unnecessary, but I want to break it up.
+        public Stock CreateStockItem(Store MyStore, string topic, string ShortDescription, string LongDescription, double Price)
+        {
+            Stock NewStock = new Stock();
+            NewStock.SetName(ShortDescription);
+            NewStock.SetPrice(Price);
+            NewStock.SetDescription(LongDescription);
+            NewStock.SetTopic(topic);
+            return NewStock;
+        }
     }
 }

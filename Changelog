@@ -40,3 +40,28 @@
             admin
             (or quit)
     started store menu and implementation
+
+3/13/20
+    Started to expand store manager sections
+        However, need stores implemented to check specific store's stock
+    Started using storecreator
+    Started initialization of stores
+    Added a setCurrent method to manager parent, to for managers to set their currently selected person/stock/store ect for use
+    Made more fields private
+    Added a utility namespace
+    added store stocker to utility
+
+3/16/20
+    Added Serializer and deserializer
+    Made a dictionary to represent stored data for every store
+        now need to have the stores generate stock data, and admins to be able to add stock, buys take away stock
+    Removed storestocker. Too redundant
+    Added more fields to stock object, for better clarity and creation
+    Put makenewuser into its own class. It is only one method, but it is long enough to be by itself
+    renamed ManagerParent to IManagerParent
+    Moved menu selection and related menu stuff to menu manager from main manager
+    Added a constructor to main menu to makes passing in the managers easier
+    Fixed code so it will at least compile and run (for now) (all the code that was causing errors has been commented out, its just not implemented yet)
+    Moved password checker method to its own class from inputcollector
+    Move menuoptionsdisplay into its own class, made it more flexible for the code
+    

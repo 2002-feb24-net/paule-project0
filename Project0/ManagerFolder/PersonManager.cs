@@ -1,25 +1,27 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Objects;
 using Creators;
+using SerDSer;
 
 namespace Managers
 {
-    class PersonManager : ManagerParent
+    class PersonManager : IManagerParent
     {
-        private Hashtable MyHashTable = new Hashtable();
+        private Dictionary<string,Person> MyManagedPeople = new Dictionary<string,Person>();
         private List<string> MyPeople = new List<string>{};
         private PersonCreator MyPersonCreator = new PersonCreator();
         private static int PersonsManaged = 0;
         private Person CurrentUser = null;
+        private string myPath = "../.json/Users.json";
 
         public PersonManager()
         {
-            foreach (Person value in MyPersonCreator.GetInitialUsers())
+            var MyDeserializer = new Deserializer();
+            MyManagedPeople = MyDeserializer.DeserializePerson(myPath);
+            foreach(KeyValuePair<string, Person> entry in MyManagedPeople)
             {
-                MyHashTable.Add(value.GetName(),value);
-                MyPeople.Add(value.GetName());
+                MyPeople.Add(entry.Key);
             }
         }
         public override int GetTotal()
@@ -43,14 +45,14 @@ namespace Managers
 
         public override Object Get(string x)
         {
-            return MyHashTable[x];
+            return MyManagedPeople[x];
         }
 
         public void AddPerson(string username,string location,string password,bool employee)
         {
             Person x = MyPersonCreator.CreatePerson(username,location,password,employee);
             MyPeople.Add(x.GetName().ToLower());
-            MyHashTable.Add(x.GetName().ToLower(),x);
+            MyManagedPeople.Add(x.GetName().ToLower(),x);
         }
 
         public void SetCurrentUser(Person x)
@@ -78,12 +80,25 @@ namespace Managers
 
         public Person GetUser(string x)
         {
-            if(MyHashTable.Contains(x.ToLower()))
+            x = x.ToLower();
+            if(MyManagedPeople.ContainsKey(x))
             {
-                return (Person) MyHashTable[x];
+                return (Person) MyManagedPeople[x];
             }
-            Console.WriteLine("Critical error: No current user selected.");
+            Console.WriteLine("Critical error: No user selected.");
             return null;
+        }
+
+        public override void SetCurrent(string x)
+        {
+            CurrentUser = MyManagedPeople[x];
+        }
+
+        public void Serialize()
+        {
+            var MySerializer = new Serializer();
+            Console.WriteLine("Serializing " + MyManagedPeople["revature"]);
+            MySerializer.Serialize(myPath,MyManagedPeople);
         }
     }
 }

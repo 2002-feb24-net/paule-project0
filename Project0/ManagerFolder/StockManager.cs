@@ -1,12 +1,14 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
+using Objects;
 
 namespace Managers
 {
-    class StockManager : ManagerParent
+    class StockManager : IManagerParent
     {
-        Hashtable MyHashTable = new Hashtable();
-        static int StocksManaged = 0;
+        private Dictionary<string,Stock> MyManagedStock = new Dictionary<string,Stock>();
+        private static int StocksManaged = 0;
+        private Stock CurrentStock;
         public override int GetTotal()
         {
             return StocksManaged;
@@ -14,7 +16,7 @@ namespace Managers
 
         public override bool CheckFor(string x)
         {
-            if(MyHashTable.Contains(x))
+            if(MyManagedStock.ContainsKey(x))
             {
                 return true;
             }
@@ -23,7 +25,12 @@ namespace Managers
 
         public override Object Get(string x)
         {
-            return MyHashTable[x];
+            return MyManagedStock[x];
+        }
+
+        public override void SetCurrent(string x)
+        {
+            CurrentStock = MyManagedStock[x];
         }
     }
 }
