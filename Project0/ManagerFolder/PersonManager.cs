@@ -97,7 +97,6 @@ namespace Managers
         public void Serialize()
         {
             var MySerializer = new Serializer();
-            Console.WriteLine("Serializing " + MyManagedPeople["revature"]);
             MySerializer.Serialize(myPath,MyManagedPeople);
         }
     }

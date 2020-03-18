@@ -4,10 +4,10 @@ namespace Objects
 {
     class Person : ObjectParent
     {
-        private string name;
-        private string location;
-        private string password;
-        private bool EmployeeTag;
+        public string name {get; set;}
+        public string location {get; set;}
+        public string password {get; set;}
+        public bool EmployeeTag {get; set;}
 
         public void SetName(string x)
         {

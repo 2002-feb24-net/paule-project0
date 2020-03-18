@@ -1,28 +1,32 @@
-3/7/20
-    Created base framework
-        creators, managers, objects, main, inputcollector
-    Working username database
-    working way to register
-    working way to set password
-        included many checks and failsafes
-    bad word filter for usernames
-    incomplete data fields for objects and managers
-    many new methods for person manager, store manager, inputcollector, mainmanager
-    added stock and stock manager
-    just realized I didnt use the creators at all
-        need to rewrite the code to include them or delete them
-    heavy console based code in input collector and main manager
-    build ends upon successfully entering a valid username
+3/17/20
+    Fixed serialization and deserialization. It was having a problem with private fields (needed public properties)
+    Reversed direction of changelog (because who wants to see the newest stuff only after scrolling through the whole thing??)
 
-3/8/20
-    Added stockcreator
-    personcreator is now utilized
-    planned out initialization of initial user base and info fields (not implemented yet)
-    fixed bug with mainfile class name
-    removed creatorparent
-        creators are going to be too different from each other to have a parent class
-        and if there was a parent class, method names would be too generic to have clear code
-    added more blacklist words
+3/16/20
+    Added Serializer and deserializer
+    Made a dictionary to represent stored data for every store
+        now need to have the stores generate stock data, and admins to be able to add stock, buys take away stock
+    Removed storestocker. Too redundant
+    Added more fields to stock object, for better clarity and creation
+    Put makenewuser into its own class. It is only one method, but it is long enough to be by itself
+    renamed ManagerParent to IManagerParent
+    Moved menu selection and related menu stuff to menu manager from main manager
+    Added a constructor to main menu to makes passing in the managers easier
+    Fixed code so it will at least compile and run (for now) (all the code that was causing errors has been commented out, its just not implemented yet)
+    Moved password checker method to its own class from inputcollector
+    Move menuoptionsdisplay into its own class, made it more flexible for the code
+    There is a bug somewhere when serializing. 
+
+3/13/20
+    Started to expand store manager sections
+        However, need stores implemented to check specific store's stock
+    Started using storecreator
+    Started initialization of stores
+    Added a setCurrent method to manager parent, to for managers to set their currently selected person/stock/store ect for use
+    Made more fields private
+    Added a utility namespace
+    added store stocker to utility
+
 
 3/9/20
     Now asks for password after username
@@ -41,27 +45,28 @@
             (or quit)
     started store menu and implementation
 
-3/13/20
-    Started to expand store manager sections
-        However, need stores implemented to check specific store's stock
-    Started using storecreator
-    Started initialization of stores
-    Added a setCurrent method to manager parent, to for managers to set their currently selected person/stock/store ect for use
-    Made more fields private
-    Added a utility namespace
-    added store stocker to utility
+3/8/20
+    Added stockcreator
+    personcreator is now utilized
+    planned out initialization of initial user base and info fields (not implemented yet)
+    fixed bug with mainfile class name
+    removed creatorparent
+        creators are going to be too different from each other to have a parent class
+        and if there was a parent class, method names would be too generic to have clear code
+    added more blacklist words
 
-3/16/20
-    Added Serializer and deserializer
-    Made a dictionary to represent stored data for every store
-        now need to have the stores generate stock data, and admins to be able to add stock, buys take away stock
-    Removed storestocker. Too redundant
-    Added more fields to stock object, for better clarity and creation
-    Put makenewuser into its own class. It is only one method, but it is long enough to be by itself
-    renamed ManagerParent to IManagerParent
-    Moved menu selection and related menu stuff to menu manager from main manager
-    Added a constructor to main menu to makes passing in the managers easier
-    Fixed code so it will at least compile and run (for now) (all the code that was causing errors has been commented out, its just not implemented yet)
-    Moved password checker method to its own class from inputcollector
-    Move menuoptionsdisplay into its own class, made it more flexible for the code
-    
+3/7/20
+    Created base framework
+        creators, managers, objects, main, inputcollector
+    Working username database
+    working way to register
+    working way to set password
+        included many checks and failsafes
+    bad word filter for usernames
+    incomplete data fields for objects and managers
+    many new methods for person manager, store manager, inputcollector, mainmanager
+    added stock and stock manager
+    just realized I didnt use the creators at all
+        need to rewrite the code to include them or delete them
+    heavy console based code in input collector and main manager
+    build ends upon successfully entering a valid username

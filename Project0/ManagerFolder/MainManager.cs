@@ -61,7 +61,9 @@ namespace Managers
         public void MainMenu(int choice = 0)
         {
             MyMenuManager.InitializeMainMenu();
+            // only reaches here after quitting
             MyPersonManager.Serialize();
+
         }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Revature\\paule-project0\\Project0\\MainFile.csproj": {}
+    "d:\\Revature\\paule-project0\\Project0\\MainFile.csproj": {}
   },
   "projects": {
-    "D:\\Revature\\paule-project0\\Project0\\MainFile.csproj": {
+    "d:\\Revature\\paule-project0\\Project0\\MainFile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
+        "projectUniqueName": "d:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
         "projectName": "MainFile",
-        "projectPath": "D:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
+        "projectPath": "d:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
         "packagesPath": "C:\\Users\\Paul Edwards\\.nuget\\packages\\",
-        "outputPath": "D:\\Revature\\paule-project0\\Project0\\obj\\",
+        "outputPath": "d:\\Revature\\paule-project0\\Project0\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Paul Edwards\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

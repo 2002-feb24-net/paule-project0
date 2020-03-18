@@ -9,7 +9,7 @@ namespace SerDSer
 {
     class Deserializer
     {
-        public List<Store> DeserializeStore(string path)
+        public Dictionary<string,Store> DeserializeStore(string path)
         {
             string json = "";
             try
@@ -20,7 +20,7 @@ namespace SerDSer
             {
                 Console.WriteLine("Fatal error");
                 Console.WriteLine(ex.Message);
-                var emptyList = new List<Store>();
+                var emptyList = new Dictionary<string,Store>();
                 return emptyList;
             }
             return ConvertFromJSONStore(json);
@@ -43,9 +43,9 @@ namespace SerDSer
             return ConvertFromJSONPerson(json);
         }
 
-        private List<Store> ConvertFromJSONStore(string data)
+        private Dictionary<string,Store> ConvertFromJSONStore(string data)
         {
-            return JsonSerializer.Deserialize<List<Store>>(data);
+            return JsonSerializer.Deserialize<Dictionary<string,Store>>(data);
         }
 
         private Dictionary<string,Person> ConvertFromJSONPerson(string data)

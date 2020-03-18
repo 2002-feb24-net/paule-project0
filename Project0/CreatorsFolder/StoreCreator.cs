@@ -8,7 +8,7 @@ namespace Creators
 {
     class StoreCreator
     {
-        private List<Store> MyStores = new List<Store>{};
+        private Dictionary<string,Store> MyStores = new Dictionary<string,Store>{};
         private Deserializer MyDeserializer = new Deserializer();
         private string myPath = "../../../MargaritavilleStock.json";
         private List<string> MyStoreLocations = new List<string>{"Margaritaville,MA","LaLaLand,CA","UndaDaSea,SC","OldTownRoad,GA","TureReva,XT"};

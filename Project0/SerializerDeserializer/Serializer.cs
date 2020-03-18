@@ -47,6 +47,7 @@ namespace SerDSer
 
         private string ConvertToJSON(Dictionary<string,Person> data)
         {
+            Console.WriteLine(JsonSerializer.Serialize(data));
             return JsonSerializer.Serialize(data);
         }
 
