@@ -60,6 +60,11 @@ namespace Managers
             CurrentUser = x;
         }
 
+        public Person GetCurrentUser()
+        {
+            return CurrentUser;
+        }
+        
         public bool CheckCurrentPassword(string x)
         {
             Console.WriteLine("Checking {0} vs {1}",x,CurrentUser.GetPassword());

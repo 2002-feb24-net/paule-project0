@@ -3,7 +3,16 @@
     Reversed direction of changelog (because who wants to see the newest stuff only after scrolling through the whole thing??)
     Cleaned up storecreator and storemanager
     store serialization and deserialization now implemented
-
+    stocks (should) now also serialize and deserialize
+    Stores will now display their menu when you choose store
+    added periods to main menu.......... very important to document
+    stores will now display their current stock for each of the topics
+    fixed a bug with null arrays in the dictionary jsons
+    made general store menu improvements
+    can now check each topics individual stock, and when I put items in there, it will show the name, a description, and the price
+        in addition you can add to you order, and remove it from the store's stock. (this needs to be changed because what if they change their mind!!)
+    checking your order is only half implemented atm
+    The 'shop' menu option is almost completed at this point. Need to use admin option to populate the shops. (NOT IMPLEMENTED)
 
 3/16/20
     Added Serializer and deserializer

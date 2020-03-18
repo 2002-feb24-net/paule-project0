@@ -40,12 +40,33 @@ namespace SerDSer
             }
         }
 
+        public async void Serialize(string path,Dictionary<string,List<Stock>> data)
+        {
+            string json = ConvertToJSON(data);
+            try
+            {
+                await WriteToFileAsync(json, path);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fatal error");
+                Console.WriteLine(ex.Message);
+                return;
+            }
+        }
+
+
         private string ConvertToJSON(Dictionary<string,Store> data)
         {
             return JsonSerializer.Serialize(data);
         }
 
         private string ConvertToJSON(Dictionary<string,Person> data)
+        {
+            return JsonSerializer.Serialize(data);
+        }
+
+        private string ConvertToJSON(Dictionary<string,List<Stock>> data)
         {
             return JsonSerializer.Serialize(data);
         }

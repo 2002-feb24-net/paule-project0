@@ -34,7 +34,18 @@ namespace Managers
                     //shop
                     WelcomeMessageMenu(1);
                     MyStoreManager.Initialize();
-                    MyStoreManager.ShopTopicChoice(MyInputCollector.GetNumber());
+                    bool GoodNumber = false;
+                    int shoptopicchoice = 0;
+                    while (!GoodNumber)
+                    {
+                        shoptopicchoice = MyInputCollector.GetNumber();
+                        GoodNumber = MyStoreManager.CheckTopicChoice(shoptopicchoice);
+                        if (GoodNumber == false)
+                        {
+                            Console.WriteLine("That is not a choice!");
+                        }
+                    }
+                    choice = MyStoreManager.ShopTopicChoice(shoptopicchoice);
                 }
                 else if (choice == 2)
                 {
@@ -65,6 +76,10 @@ namespace Managers
                     //quit
                     WelcomeMessageMenu(5);
                     finished = true;
+                }
+                else
+                {
+                    Console.WriteLine("That is not a choice!");
                 }
             }
         }

@@ -43,6 +43,23 @@ namespace SerDSer
             return ConvertFromJSONPerson(json);
         }
 
+        public Dictionary<string,List<Stock>> DeserializeStock(string path)
+        {
+            string json = "";
+            try
+            {
+                json = ReadFromFileAsync(path).Result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fatal error");
+                Console.WriteLine(ex.Message);
+                var emptyDictionary = new Dictionary<string,List<Stock>>();
+                return emptyDictionary;
+            }
+            return ConvertFromJSONStock(json);
+        }
+
         private Dictionary<string,Store> ConvertFromJSONStore(string data)
         {
             return JsonSerializer.Deserialize<Dictionary<string,Store>>(data);
@@ -51,6 +68,11 @@ namespace SerDSer
         private Dictionary<string,Person> ConvertFromJSONPerson(string data)
         {
             return JsonSerializer.Deserialize<Dictionary<string,Person>>(data);
+        }
+
+        private Dictionary<string,List<Stock>> ConvertFromJSONStock(string data)
+        {
+            return JsonSerializer.Deserialize<Dictionary<string,List<Stock>>>(data);
         }
 
         private async Task<string> ReadFromFileAsync(string path)

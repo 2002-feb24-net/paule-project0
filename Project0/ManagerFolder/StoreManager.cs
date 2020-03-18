@@ -10,13 +10,11 @@ namespace Managers
     {
         private Store CurrentStore = null;
         private StoreCreator MyStoreCreator = new StoreCreator();
-        private StockManager MyStockManager = new StockManager();
         private Dictionary<string,Store> MyManagedStores = new Dictionary<string,Store>();
         private List<string> MyLocations = new List<string>{};
         private List<string> MyStoreTopics = new List<string>{"Jewelry","Electronics (Non-Phone)","Purses","Wallets","Phones","Household Items","Cars","Gardening Tools","Back"};
-
-        private List<Store> myStores = new List<Store> {};
         private static int StoresManaged = 0;
+        private OrderManager MyOrderManager;
 
         private string myPath = "../.json/MasterLocationList.json";
 
@@ -26,9 +24,19 @@ namespace Managers
             MyManagedStores = MyDeserializer.DeserializeStore(myPath);
             foreach (KeyValuePair<string, Store> entry in MyManagedStores)
             {
+                entry.Value.Initialize();
                 MyLocations.Add(entry.Key);
             }
             MyStoreCreator.Initialize();
+        }
+
+        public void ReceiveOrderManager(OrderManager InputOrderManager)
+        {
+            this.MyOrderManager = InputOrderManager;
+            foreach (KeyValuePair<string, Store> entry in MyManagedStores)
+            {
+                entry.Value.ReceiveOrderManager(MyOrderManager);
+            }
         }
 
         public override void SetCurrent(string x)
@@ -88,75 +96,43 @@ namespace Managers
 
         public void Initialize()
         {
-            Console.WriteLine("Welcome to the shop!"); 
-            Console.WriteLine("All goods here are obtained organically and are hand picked by well-trained human-rights activists.");
-            Console.WriteLine("What are you looking for?");
-            Console.WriteLine();
-            Console.Write("Sections: ");
-
-            for(int i = 0; i<MyStoreTopics.Count;i++)
-            {
-                Console.WriteLine($"{i}. " + MyStoreTopics[i]);
-            }
-            Console.WriteLine();
-            Console.Write("I'm interested in ");
+            CurrentStore.DisplayGoods();
         }
 
-        public void ShopTopicChoice(int x)
+        public int ShopTopicChoice(int x)
         {
-            // "Jewelry","Electronics (Non-Phone)","Purses","Wallets","Phones","Household Items","Cars","Gardening Tools","Back"
-            
-            switch (x)
+            if (x == 0)
             {
-                case 1:
-                //CurrentStore.PopulateJewelry();
-                Console.WriteLine("TODO: Not yet created.");
-                break;
-
-                case 2: 
-                //PopulateElectronics();
-                Console.WriteLine("TODO: Not yet created.");
-                break;
-
-                case 3: 
-                //PopulatePurses();
-                Console.WriteLine("TODO: Not yet created.");
-                break;
-
-                case 4: 
-                //PopulateWallets();
-                Console.WriteLine("TODO: Not yet created.");
-                break;
-
-                case 5: 
-                //PopulatePhones();
-                Console.WriteLine("TODO: Not yet created.");
-                break;
-
-                case 6: 
-                //PopulateHouseholdItems();
-                Console.WriteLine("TODO: Not yet created.");
-                break;
-
-                case 7: 
-                //PopulateCars();
-                Console.WriteLine("TODO: Not yet created.");
-                break;
-
-                case 8: 
-                //PopulateGardeningTools();
-                Console.WriteLine("TODO: Not yet created.");
-                break;
-
-                default:
-                break;
+                return 0;
             }
+            if (x == 9999)
+            {
+                // MyOrderManager.PeekOrder();
+                Console.WriteLine("TODO: Not yet created.");
+                return 1;
+            }
+            CurrentStore.PopulateChosenTopic(x);
+            return 1;
         }
 
         public void Serialize()
         {
             var MySerializer = new Serializer();
             MySerializer.Serialize(myPath,MyManagedStores);
+            CurrentStore.Serialize();
+        }
+
+        public bool CheckTopicChoice(int x)
+        {
+            if (x == 9999)
+            {
+                return true;
+            }
+            if (x < 0)
+            {
+                return false;
+            }
+            return CurrentStore.CheckTopicChoice(x);
         }
     }
 }

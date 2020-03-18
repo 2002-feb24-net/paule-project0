@@ -9,7 +9,6 @@ namespace Objects
         private string name;
         private double price;
         private string description;
-        private Dictionary<string,int> MyStartingStock = new Dictionary<string,int>{};
 
         public void SetName(string x)
         {

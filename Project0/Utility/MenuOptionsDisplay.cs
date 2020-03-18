@@ -29,7 +29,7 @@ namespace Utility
             string[] options = new string[] {"SHOP","HISTORY","ACCOUNT","ADMIN","QUIT"};
             for (int i = 0 ; i<options.Length;i++)
             {
-                Console.Write(i+1 + " ");
+                Console.Write(i+1 + ". ");
                 Console.WriteLine(options[i]);
             }
         }

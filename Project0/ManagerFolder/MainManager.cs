@@ -1,6 +1,7 @@
 using System;
 using Utility;
 using Creators;
+using Objects;
 
 namespace Managers
 {
@@ -28,6 +29,8 @@ namespace Managers
                 MyPersonManager.SetCurrentUser(MyPersonManager.GetUser(input));
                 VerifiedUser = Verify(MyPersonManager.CheckFor(input));
             }
+            Person CurrentUser = MyPersonManager.GetCurrentUser();
+            SetToCurrentGlobal(CurrentUser);
             VerifiedUser = false;
             while (!VerifiedUser)
             {
@@ -58,13 +61,19 @@ namespace Managers
         //! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX END OF INITIALIZE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         //! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  
 
-        public void MainMenu(int choice = 0)
+        public void MainMenu()
         {
             MyMenuManager.InitializeMainMenu();
             // only reaches here after quitting
             MyPersonManager.Serialize();
             MyStoreManager.Serialize();
+        }
 
+        private void SetToCurrentGlobal(Person x)
+        {
+            MyStoreManager.SetCurrent(x.GetLocation());
+            MyOrderManager.SetCurrent(x.GetName());
+            MyStoreManager.ReceiveOrderManager(MyOrderManager);
         }
     }
 }

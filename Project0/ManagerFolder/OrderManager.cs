@@ -6,9 +6,9 @@ namespace Managers
 {
     class OrderManager : IManagerParent
     {
-        private Dictionary<string,Order> MyManagedOrders = new Dictionary<string,Order>();
+        private Dictionary<string,List<Order>> MyManagedOrders = new Dictionary<string,List<Order>>();
         static int OrdersManaged = 0;
-        private Order CurrentOrder = null;
+        private string CurrentUser = null;
         public override int GetTotal()
         {
             return OrdersManaged;
@@ -30,7 +30,7 @@ namespace Managers
 
         public override void SetCurrent(string x)
         {
-            CurrentOrder = MyManagedOrders[x];
+            CurrentUser = x;
         }
     }
 }

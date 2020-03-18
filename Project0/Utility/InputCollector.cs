@@ -47,8 +47,16 @@ namespace Utility
 
         public int GetNumber()
         {
-            Console.Write("Desired number: ");
+            Console.Write("Desired Number: ");
             string input = Console.ReadLine();
+            if (input.ToLower() == "b")
+            {
+                return 0;
+            }
+            if (input.ToLower() == "o")
+            {
+                return 9999;
+            }
             Console.WriteLine(" ");
             return int.Parse(input);
         }

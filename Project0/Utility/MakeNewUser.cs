@@ -48,7 +48,7 @@ namespace Utility
                 Console.WriteLine("Location: {0}",NewLocation);
                 Console.WriteLine(" ");
                 Console.WriteLine("Please enter your desired password. Note: it will not be starred out.");
-                Console.WriteLine("It must have at least 3 caps, at least 2 numbers, be over 15 characters long, have exactly 1 !, and have the word 'dog' in it.");
+                Console.WriteLine("It must have at least 3 caps, no spaces, at least 2 numbers, be over 15 but under 25 characters long, have exactly 1 !, and have the word 'dog' in it.");
                 Console.WriteLine(" ");
 
                 input = MyInputCollector.SetPassword();
