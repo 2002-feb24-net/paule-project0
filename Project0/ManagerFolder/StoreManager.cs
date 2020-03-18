@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using Objects;
 using System.Collections.Generic;
 using Creators;
+using SerDSer;
 
 namespace Managers
 {
@@ -11,22 +11,22 @@ namespace Managers
         private Store CurrentStore = null;
         private StoreCreator MyStoreCreator = new StoreCreator();
         private StockManager MyStockManager = new StockManager();
-        private StockCreator MyStockCreator = new StockCreator();
         private Dictionary<string,Store> MyManagedStores = new Dictionary<string,Store>();
-        private List<string> MyLocations = new List<string>{"Margaritaville,MA","LaLaLand,CA","UndaDaSea,SC","OldTownRoad,GA","TureReva,XT"};
+        private List<string> MyLocations = new List<string>{};
         private List<string> MyStoreTopics = new List<string>{"Jewelry","Electronics (Non-Phone)","Purses","Wallets","Phones","Household Items","Cars","Gardening Tools","Back"};
 
-        private List<Store> MyStores = new List<Store> {};
+        private List<Store> myStores = new List<Store> {};
         private static int StoresManaged = 0;
+
+        private string myPath = "../.json/MasterLocationList.json";
 
         public StoreManager()
         {
-            foreach(string value in MyLocations)
+            var MyDeserializer = new Deserializer();
+            MyManagedStores = MyDeserializer.DeserializeStore(myPath);
+            foreach (KeyValuePair<string, Store> entry in MyManagedStores)
             {
-                Store NewStore = new Store();
-                NewStore.SetName(value.ToLower());
-
-                MyManagedStores.Add(value,NewStore);
+                MyLocations.Add(entry.Key);
             }
             MyStoreCreator.Initialize();
         }
@@ -151,6 +151,12 @@ namespace Managers
                 default:
                 break;
             }
+        }
+
+        public void Serialize()
+        {
+            var MySerializer = new Serializer();
+            MySerializer.Serialize(myPath,MyManagedStores);
         }
     }
 }

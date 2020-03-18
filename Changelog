@@ -1,6 +1,9 @@
 3/17/20
     Fixed serialization and deserialization. It was having a problem with private fields (needed public properties)
     Reversed direction of changelog (because who wants to see the newest stuff only after scrolling through the whole thing??)
+    Cleaned up storecreator and storemanager
+    store serialization and deserialization now implemented
+
 
 3/16/20
     Added Serializer and deserializer

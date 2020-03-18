@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Revature\\paule-project0\\Project0\\MainFile.csproj": {}
+    "D:\\Revature\\paule-project0\\Project0\\MainFile.csproj": {}
   },
   "projects": {
-    "d:\\Revature\\paule-project0\\Project0\\MainFile.csproj": {
+    "D:\\Revature\\paule-project0\\Project0\\MainFile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
+        "projectUniqueName": "D:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
         "projectName": "MainFile",
-        "projectPath": "d:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
+        "projectPath": "D:\\Revature\\paule-project0\\Project0\\MainFile.csproj",
         "packagesPath": "C:\\Users\\Paul Edwards\\.nuget\\packages\\",
-        "outputPath": "d:\\Revature\\paule-project0\\Project0\\obj\\",
+        "outputPath": "D:\\Revature\\paule-project0\\Project0\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Paul Edwards\\AppData\\Roaming\\NuGet\\NuGet.Config",

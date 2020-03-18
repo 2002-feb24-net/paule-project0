@@ -15,24 +15,14 @@ namespace Creators
         public void Initialize()
         {
             MyStores = MyDeserializer.DeserializeStore(myPath);
-            // StoreStocker MyStoreStocker = new StoreStocker();
-            // for (int i = 0; i<MyStoreLocations.Count;i++)
-            // {
-            //     Store NewStore = new Store();
-            //     NewStore.SetName(MyStoreLocations[i]);
-            //     NewStore.SetNameAsInt(i);
-            //     MyStoreStocker.StockStore(NewStore);
-            //     MyStores.Add(NewStore);
-            // }
         }
 
-        public void CreateStore(string location,Dictionary<string,List<Stock>> x)
+        public Store CreateStore(string location,string path)
         {
-            //"Jewelry","Electronics (Non-Phone)","Purses","Wallets","Phones","Household Items","Cars","Gardening Tools","Back"
             Store y = new Store();
             y.SetName(location);
-            //Dictionary<string,List<Stock>>
-            y.SetMyDictionary(x);
+            y.SetPath(path);
+            return(y);
         }
     }
 }

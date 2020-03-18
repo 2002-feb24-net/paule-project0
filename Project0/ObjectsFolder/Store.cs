@@ -7,12 +7,12 @@ namespace Objects
 {
     class Store : ObjectParent
     {
-        private string location;
-        private int locationInt;
+        public string location {get; set;}
+        public string myPath {get; set;}
+
         private List<string> MyStoreTopics = new List<string>{"Jewelry","Electronics (Non-Phone)","Purses","Wallets","Phones","Household Items","Cars","Gardening Tools","Back"};
         private Dictionary<string,List<Stock>> MyDictionary = new Dictionary<string,List<Stock>>{};
-        private StockManager MyStockManager = new StockManager();
-        private StockCreator MyStockCreator = new StockCreator();
+        private StockManager MyStockManager;
         public Store()
         {
             GetStoreTopics();
@@ -26,17 +26,7 @@ namespace Objects
         {
             return this.location;
         }
-
-        public void SetNameAsInt(int x)
-        {
-            this.locationInt = x;
-        }
-
-        public int GetNameAsInt()
-        {
-            return locationInt;
-        }
-
+        
         private void GetStoreTopics()
         {
             foreach (string key in MyDictionary.Keys)
@@ -48,6 +38,16 @@ namespace Objects
         public void SetMyDictionary(Dictionary<string,List<Stock>> x)
         {
             MyDictionary = x;
+        }
+
+        public void SetPath(string x)
+        {
+            this.myPath = x;
+        }
+
+        public string GetPath()
+        {
+            return this.myPath;
         }
 
         public void AddStock(Stock x)

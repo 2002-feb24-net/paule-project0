@@ -20,3 +20,5 @@ D:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.AssemblyInf
 D:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.AssemblyInfo.cs
 D:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.dll
 D:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.pdb
+D:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.csproj.CoreCompileInputs.cache
+D:\Revature\paule-project0\Project0\obj\Debug\netcoreapp3.1\MainFile.genruntimeconfig.cache

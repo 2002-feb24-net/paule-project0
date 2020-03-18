@@ -63,6 +63,7 @@ namespace Managers
             MyMenuManager.InitializeMainMenu();
             // only reaches here after quitting
             MyPersonManager.Serialize();
+            MyStoreManager.Serialize();
 
         }
     }

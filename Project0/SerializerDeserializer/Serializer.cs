@@ -10,7 +10,7 @@ namespace SerDSer
 {
     class Serializer
     {
-        public async void Serialize(string path,List<Store> data)
+        public async void Serialize(string path,Dictionary<string,Store> data)
         {
             string json = ConvertToJSON(data);
             try
@@ -40,14 +40,13 @@ namespace SerDSer
             }
         }
 
-        private string ConvertToJSON(List<Store> data)
+        private string ConvertToJSON(Dictionary<string,Store> data)
         {
             return JsonSerializer.Serialize(data);
         }
 
         private string ConvertToJSON(Dictionary<string,Person> data)
         {
-            Console.WriteLine(JsonSerializer.Serialize(data));
             return JsonSerializer.Serialize(data);
         }
 
