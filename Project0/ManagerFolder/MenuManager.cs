@@ -53,6 +53,8 @@ namespace Managers
                     WelcomeMessageMenu(2);
                     // TODO MyOrderManager.GetUserHistory();
                     Console.WriteLine("TODO: Not yet created.");
+                    Console.WriteLine("Press enter to continue."); //THIS IS TEMPORARY TO SEE MY OUTPUT
+                    Console.ReadLine(); //THIS IS TEMPORARY TO SEE MY OUTPUT
                 }
                 else if (choice == 3)
                 {
@@ -60,6 +62,8 @@ namespace Managers
                     WelcomeMessageMenu(3);
                     // TODO MyPersonManager.EditAccountDetails();
                     Console.WriteLine("TODO: Not yet created.");
+                    Console.WriteLine("Press enter to continue."); //THIS IS TEMPORARY TO SEE MY OUTPUT
+                    Console.ReadLine(); //THIS IS TEMPORARY TO SEE MY OUTPUT
                 }
                 else if (choice == 4)
                 {
@@ -69,6 +73,8 @@ namespace Managers
                     // if(MyPersonManager.CheckEmployee())
                     // {
                     //     TODO MyStoreManager.EmployeeInitialize();
+                            Console.WriteLine("Press enter to continue."); //THIS IS TEMPORARY TO SEE MY OUTPUT
+                            Console.ReadLine(); //THIS IS TEMPORARY TO SEE MY OUTPUT
                     // }
                 }
                 else if (choice == 5)

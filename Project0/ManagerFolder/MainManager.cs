@@ -11,7 +11,6 @@ namespace Managers
         private PersonManager MyPersonManager = new PersonManager();
         private StoreManager MyStoreManager = new StoreManager();
         private OrderManager MyOrderManager = new OrderManager();
-        private OrderCreator MyOrderCreator = new OrderCreator();
         private MenuManager MyMenuManager;
 
         public MainManager()

@@ -12,7 +12,6 @@ namespace Managers
         private StoreCreator MyStoreCreator = new StoreCreator();
         private Dictionary<string,Store> MyManagedStores = new Dictionary<string,Store>();
         private List<string> MyLocations = new List<string>{};
-        private List<string> MyStoreTopics = new List<string>{"Jewelry","Electronics (Non-Phone)","Purses","Wallets","Phones","Household Items","Cars","Gardening Tools","Back"};
         private static int StoresManaged = 0;
         private OrderManager MyOrderManager;
 
@@ -109,12 +108,14 @@ namespace Managers
             {
                 // MyOrderManager.PeekOrder();
                 Console.WriteLine("TODO: Not yet created.");
+                Console.WriteLine("Press enter to continue."); //THIS IS TEMPORARY TO SEE MY OUTPUT
+                Console.ReadLine(); //THIS IS TEMPORARY TO SEE MY OUTPUT
                 return 1;
             }
             CurrentStore.PopulateChosenTopic(x);
+            
             return 1;
         }
-
         public void Serialize()
         {
             var MySerializer = new Serializer();

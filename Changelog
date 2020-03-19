@@ -1,3 +1,8 @@
+3/18/20
+    Basics Implimented: Order class, OrderManager  (both bare bones)
+    Deleted OrderCreator. Order is just a wrapper, I can use 1 constructor and don't need a special creator.
+    When buying something, it takes it out of the store's dictionary, and gives it to the order manager.
+
 3/17/20
     Fixed serialization and deserialization. It was having a problem with private fields (needed public properties)
     Reversed direction of changelog (because who wants to see the newest stuff only after scrolling through the whole thing??)

@@ -158,6 +158,7 @@ namespace Objects
                 return;
             } 
             Console.WriteLine($"{activeList[input-1].GetName()} has been added to your order. ");
+            MyOrderManager.AddToCurrentOrder(MyStock[MyStoreTopics[x-1]][input-1]);
             MyStock[MyStoreTopics[x-1]].RemoveAt(input-1);
         }
 
