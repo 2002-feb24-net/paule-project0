@@ -1,5 +1,38 @@
+3/23/20
+    Revamped database (now better structured)
+    All data can be loaded successfully from the database
+    Cleaned classes of code that was made unnecessary by the implementation of the database
+    Can now look at order
+    can now 'pay'
+    'paying' adds the order to your history
+    can remove items from your order, which sends them back to the store.
+    application now loops after saving (just because why not)
+        can exit with 'b'
+    Restructured and renamed the save/load namespace to better reflect its purpose
+    load is completely implemented
+    save is mostly implemented... 
+        needs logic for removing objects, but adding objects is there
+    ......lots of room for bugs and errors. Needs cleanup
+    Known null error related to max and store/order stock ids
+        this error is guarenteed to fire at the moment for a new user when adding items to cart
+    
+
+3/22/20
+    Changed file structure to proper library/app format
+    Added order history, and a way to look it up
+    Implemented Order history menu
+    Added validation checks for non-existent histories
+    Cleaned up MakeNewUser class, to make the code safer and more reuseable
+    Can now edit account details with implemented account menu
+        user can not change username,location,and/or password
+    Added employeemanager class
+    employees can now change any users username, location, password, or employee status
+    cleaned up storecreator
+    Made Database
+    Started framework for saving/loading
+
 3/18/20
-    Basics Implimented: Order class, OrderManager  (both bare bones)
+    Basics Implemented: Order class, OrderManager  (both bare bones)
     Deleted OrderCreator. Order is just a wrapper, I can use 1 constructor and don't need a special creator.
     When buying something, it takes it out of the store's dictionary, and gives it to the order manager.
     cleaned up code to have more obvious TODO markers
