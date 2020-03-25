@@ -3,6 +3,9 @@ using Utility;
 
 namespace Managers
 {
+        /// <summary>
+        ///  This class handles the menu redirect logic, and some basic user interactions.
+        /// </summary>
     public class MenuManager
     {
         private InputCollector MyInputCollector;
@@ -10,6 +13,9 @@ namespace Managers
         private StoreManager MyStoreManager;
         private OrderManager MyOrderManager;
 
+        /// <summary>
+        ///  This constructor ensure manager consistency, and data access for this manager.
+        /// </summary>
         public MenuManager(InputCollector MyInputCollector, PersonManager MyPersonManager, StoreManager MyStoreManager, OrderManager MyOrderManager)
         {
             this.MyInputCollector = MyInputCollector;
@@ -17,6 +23,10 @@ namespace Managers
             this.MyStoreManager = MyStoreManager;
             this.MyOrderManager = MyOrderManager;
         }
+
+        /// <summary>
+        ///  This method sets the current user for all managers, and general consistency maintenance like initializing the other managers for each other.
+        /// </summary>
         public void InitializeMainMenu(int choice = 0)
         {
             Console.Clear();

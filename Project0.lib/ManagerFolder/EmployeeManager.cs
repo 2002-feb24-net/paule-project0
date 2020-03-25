@@ -248,7 +248,7 @@ namespace Managers
             while (!GoodChoice)
             {
                 input = MyInputCollector.GetNumber();
-                if (!(input < 0 || input > MyLocationNames.Count))
+                if (!(input < 0 || input > MyLocationNames.Count+1))
                 {
                     GoodChoice = true;
                 }
@@ -257,11 +257,12 @@ namespace Managers
                     Console.WriteLine("That number is not on the list!");
                 }
             }
+            Console.WriteLine($"Picked: {input} Count: {MyLocationNames.Count}");
             if (input == 0)
             {
                 return;
             }
-            if (input == MyLocationNames.Count)
+            if (input == MyLocationNames.Count+1)
             {
                 Console.Clear();
                 Console.WriteLine("What is the name of your new location?");

@@ -1,3 +1,7 @@
+3/25/20
+    XML Commits done on: 
+         
+
 3/24/20
     Fixed null error bug.
     Edited order updating and new order creation. Should now work (serverside) as expected
@@ -10,7 +14,7 @@
     users can now order (fixed null error)
     now saves users to data base after creation instead of at the end of the program
     XML Commits done on: 
-        Main, EmployeeManager, IManagerParent, 
+        Main, EmployeeManager, IManagerParent, MainManager, 
     fixed bug with removing stock from large stock lists
     known bug related to creating new topics
     known bug related to account info changes only being client-side
