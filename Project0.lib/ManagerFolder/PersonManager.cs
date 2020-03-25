@@ -46,9 +46,12 @@ namespace Managers
                 return false;
             }
             
-            if(MyPeople.Contains(x.ToLower()))
+            foreach (var val in MyPeople)
             {
-                return true;
+                if(val == x)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -65,8 +68,8 @@ namespace Managers
             x.SetEmployeeTag(employee);
             x.SetLocation(location);
             x.SetPassword(password);
-            MyPeople.Add(x.GetName().ToLower());
-            MyManagedPeople.Add(x.GetName().ToLower(),x);
+            MyPeople.Add(x.GetName());
+            MyManagedPeople.Add(x.GetName(),x);
         }
 
         public void SetCurrentUser(Person x)
@@ -81,7 +84,7 @@ namespace Managers
         
         public bool CheckCurrentPassword(string x)
         {
-            Console.WriteLine("Checking {0} vs {1}",x,CurrentUser.GetPassword());
+            //Console.WriteLine("Checking {0} vs {1}",x,CurrentUser.GetPassword());
             if (CurrentUser.GetPassword() == "")
             {
                 Console.WriteLine("Critical error. No assigned user.");
@@ -99,10 +102,12 @@ namespace Managers
 
         public Person GetUser(string x)
         {
-            x = x.ToLower();
-            if(MyManagedPeople.ContainsKey(x))
+            foreach (var val in MyManagedPeople)
             {
-                return (Person) MyManagedPeople[x];
+                if(val.Key == x)
+                {
+                    return (Person) MyManagedPeople[x];
+                }
             }
             Console.WriteLine("Critical error: No user selected.");
             return null;
@@ -136,6 +141,10 @@ namespace Managers
                 if (!(input < 0 || input > Options.Count))
                 {
                     GoodNumber = true;
+                }
+                if (GoodNumber == false)
+                {
+                    Console.WriteLine("That number is not on the list!");
                 }
             }
             if (input == 0)

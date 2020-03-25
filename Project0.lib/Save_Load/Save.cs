@@ -10,21 +10,26 @@ namespace SaveLoad
 {
     public class Save
     {
-        static MainManager MyMainManager;
-        static PersonManager MyPersonManager;
-        static StoreManager MyStoreManager;
-        static OrderManager MyOrderManager;
-        public void SaveAll(MainManager MyMainManager1, PersonManager MyPersonManager1, StoreManager MyStoreManager1, OrderManager MyOrderManager1)
+        private static MainManager MyMainManager;
+        private static PersonManager MyPersonManager;
+        private static StoreManager MyStoreManager;
+        private static OrderManager MyOrderManager;
+
+        public void LoadAll(MainManager MyMainManager1, PersonManager MyPersonManager1, StoreManager MyStoreManager1, OrderManager MyOrderManager1)
         {
             MyMainManager = MyMainManager1;
             MyPersonManager = MyPersonManager1;
             MyStoreManager = MyStoreManager1;
             MyOrderManager = MyOrderManager1;
+        }
+        public void SaveAll()
+        {
             SaveUsers();
             SaveStoreStock();
+            SaveOrderStock();
         }
 
-        public void SaveUsers()
+        private void SaveUsers()
         {
             Dictionary<string,Person> MyCurrentPeople = MyPersonManager.GetManagedPeople();
             using (PersonDbContext context = new PersonDbContext())
@@ -60,7 +65,7 @@ namespace SaveLoad
             }
         }
 
-        public void SaveStoreStock()
+        private void SaveStoreStock()
         {
             Dictionary<string,Store> MyManagedStores = MyStoreManager.GetManagedStores();
 
@@ -79,27 +84,50 @@ namespace SaveLoad
                         List<Stock> MyCurrentStock = val2.Value;
                         foreach (var val3 in MyCurrentStock)
                         {
-                            var MyQuerry = context.GeneralStock
+                            var MyQuery = context.GeneralStock
                                 .FirstOrDefault (Stock => Stock.StockName == val3.GetName());
                             
-                            if (MyQuerry == null)
+                            if (MyQuery == null)
                             {
+                                int NewStockId;
+                                int NewStoreStockId;
+
+                                try
+                                {
+                                    NewStockId = context.GeneralStock.Max(stock => stock.StockId)+1;
+                                }
+                                catch (Exception)
+                                {
+                                    //null, no general stock exist
+                                    NewStockId = 1;
+                                }
+
+                                try
+                                {
+                                    NewStoreStockId = context.StoreStock.Max(stock => stock.StoreStockId)+1;
+                                }
+                                catch (Exception)
+                                {
+                                    //null, no store stock exist
+                                    NewStoreStockId = 1;
+                                }
                                 GeneralStock gensto = new GeneralStock
                                 {
-                                    StockId = context.GeneralStock.Max(stock => stock.StockId)+1,
+                                    StockId = NewStockId,
                                     TopicId = context.Topics.First(p => p.TopicName == val3.GetTopic()).TopicId,
                                     StockName = val3.GetName(),
                                     Price = Convert.ToDecimal(val3.GetPrice()),
                                     StockDescription = val3.GetDescription(),
                                     OrderStockId = null,
-                                    StoreStockId = context.StoreStock.Max(stock => stock.StoreStockId)+1
+                                    StoreStockId = NewStoreStockId
                                 };
 
                                 StoreStock stosto = new StoreStock
                                 {
-                                    StoreStockId = (int)gensto.StoreStockId,
-                                    LocationId = context.Locations.First(p => p.LocationName == val2.Key).LocationId
+                                    StoreStockId = NewStoreStockId,
+                                    LocationId = context.Locations.First(p => p.LocationName == val1.Key).LocationId
                                 };
+
 
                                 context.StoreStock.Add(stosto);
                                 context.GeneralStock.Add(gensto);
@@ -118,7 +146,7 @@ namespace SaveLoad
             }
         }
 
-        public void SaveOrderStock()
+        private void SaveOrderStock()
         {
             Dictionary<string,List<Order>> MyManagedOrders = MyOrderManager.GetManagedOrders();
 
@@ -135,13 +163,14 @@ namespace SaveLoad
                     List<Order> MyCurrentNamedOrder = val1.Value;
                     foreach (var val2 in MyCurrentNamedOrder)
                     {
+                        int added = 0;
                         List<Stock> MyCurrentStock = val2.GetItems();
                         foreach (var val3 in MyCurrentStock)
                         {
-                            var MyQuerry = context.GeneralStock
+                            var MyQuery = context.GeneralStock
                                 .FirstOrDefault (Stock => Stock.StockName == val3.GetName());
                             
-                            if (MyQuerry == null)
+                            if (MyQuery == null)
                             {
                                 GeneralStock gensto = new GeneralStock
                                 {
@@ -156,7 +185,7 @@ namespace SaveLoad
 
                                 Orders ords = new Orders()
                                 {
-                                    OrderId = context.Orders.Max(o => o.OrderId)+1,
+                                    OrderId = context.Orders.Max(o => o.OrderId)+1+added,
                                     PersonId = context.People.First(p => p.Username == val1.Key).PersonId,
                                     Price = Convert.ToDecimal(val2.GetPrice()), 
                                     OrderDate = val2.GetDate()
@@ -203,6 +232,33 @@ namespace SaveLoad
                 }
                 else
                 {
+                    Orders ords;
+                    int ordsOrderId;
+                    try
+                    {
+                        ordsOrderId = context.Orders.Max(o => o.OrderId)+1;
+                    }
+                    catch (Exception)
+                    {
+                        ordsOrderId = 1;
+                    }
+                    if (MyOrderManager.GetCurrentOrder().GetItems().Count <= 1)
+                    {
+                        ords = new Orders()
+                        {
+                            OrderId = ordsOrderId,
+                            PersonId = context.People.First(p => p.Username == MyPersonManager.GetCurrentUser().GetName()).PersonId,
+                            Price = 0, 
+                            OrderDate = DateTime.Now
+                        };
+                        context.Orders.Add(ords);
+                    }
+                    else
+                    {
+                        var w = context.People.First(p => p.Username == MyPersonManager.GetCurrentUser().GetName()).PersonId;
+                        var e = context.Orders.Max(p => p.OrderId);
+                        ords = context.Orders.First(p => p.OrderId == e);
+                    }
                     var count = (from orsto in context.OrderStock select orsto.OrderId).Count();
                     if (count == 0)
                     {
@@ -210,15 +266,10 @@ namespace SaveLoad
                             .First(p => p.StoreStockId == DataGeneralStock.StoreStockId);
                         context.StoreStock.Remove(q);
                         DataGeneralStock.StoreStockId = null;
-                        Console.WriteLine(MyPersonManager);
-                        var e = DataPeople
-                            .First(p => p.Username == MyPersonManager.GetCurrentUser().GetName()).PersonId;
-                        var w = DataOrders
-                            .First(p => p.PersonId == e);
                         OrderStock ordsto = new OrderStock
                         {
-                            OrderStockId = context.OrderStock.Max(stock => stock.OrderStockId)+1,
-                            OrderId = w.OrderId
+                            OrderStockId = 1,
+                            OrderId = ords.OrderId
                         };
                         DataGeneralStock.OrderStockId = ordsto.OrderStockId;
                         context.OrderStock.Add(ordsto);
@@ -229,8 +280,23 @@ namespace SaveLoad
                             .First(p => p.StoreStockId == DataGeneralStock.StoreStockId);
                         context.StoreStock.Remove(q);
                         DataGeneralStock.StoreStockId = null;
+                        OrderStock ordsto = new OrderStock
+                        {
+                            OrderStockId = context.OrderStock.Max(stock => stock.OrderStockId)+1,
+                            OrderId = ords.OrderId
+                        };
+                        DataGeneralStock.OrderStockId = ordsto.OrderStockId;
+                        context.OrderStock.Add(ordsto);
                         DataGeneralStock.OrderStockId = context.OrderStock.Max(order => order.OrderStockId)+1;
                     }
+                    double totalprice = 0;
+                    foreach (var val in MyOrderManager.GetCurrentOrder().GetItems())
+                    {
+                        totalprice = totalprice + val.GetPrice();
+                    }
+
+                    ords.Price = Convert.ToDecimal(totalprice);
+                    //context.OrderStock.Add(ords);
 
                     try
                     {
@@ -251,6 +317,10 @@ namespace SaveLoad
             {
                 var DataGeneralStock = context.GeneralStock
                     .FirstOrDefault(p => p.StockName == x);
+                var DataLocation = context.Locations
+                    .ToList();
+                var DataPeople = context.People
+                    .ToList();
 
                 if (DataGeneralStock == null)
                 {
@@ -262,13 +332,39 @@ namespace SaveLoad
                     var count = (from storsto in context.StoreStock select storsto.StoreStockId).Count();
                     if (count == 0)
                     {
-                        DataGeneralStock.StoreStockId = 1;
+                        var q = context.OrderStock
+                            .First(p => p.OrderStockId == DataGeneralStock.OrderStockId);
+                        context.OrderStock.Remove(q);
                         DataGeneralStock.OrderStockId = null;
+                        var e = DataPeople
+                            .First(p => p.Username == MyPersonManager.GetCurrentUser().GetLocation()).LocationId;
+                        var w = DataLocation
+                            .First(p => p.LocationId == e);
+                        StoreStock storsto = new StoreStock
+                        {
+                            StoreStockId = 1,
+                            LocationId = w.LocationId
+                        };
+                        DataGeneralStock.StoreStockId = storsto.StoreStockId;
+                        context.StoreStock.Add(storsto);
                     }
                     else
                     {
-                        DataGeneralStock.StoreStockId = context.StoreStock.Max(stock => stock.StoreStockId)+1;
+                        var q = context.OrderStock
+                            .First(p => p.OrderStockId == DataGeneralStock.OrderStockId);
+                        context.OrderStock.Remove(q);
                         DataGeneralStock.OrderStockId = null;
+                        var e = DataLocation
+                            .First(p => p.LocationName == MyPersonManager.GetCurrentUser().GetLocation()).LocationId;
+                        var w = DataPeople
+                            .First(p => p.LocationId == e);
+                        StoreStock storsto = new StoreStock
+                        {
+                            StoreStockId = context.StoreStock.Max(stock => stock.StoreStockId)+1,
+                            LocationId = w.LocationId
+                        };
+                        DataGeneralStock.StoreStockId = storsto.StoreStockId;
+                        context.StoreStock.Add(storsto);
                     }
 
                     try
@@ -281,6 +377,36 @@ namespace SaveLoad
                     }
                 }
 
+            }
+        }
+
+        public bool CreateLocation(string MyNewLocation)
+        {
+            using (PersonDbContext context = new PersonDbContext())
+            {
+                var DataLocations = context.Locations;
+
+                var ExistsQuary = DataLocations.FirstOrDefault(p => p.LocationName == MyNewLocation);
+
+                if (ExistsQuary == null)
+                {
+                    Locations MyNewLocationData = new Locations()
+                    {
+                        LocationId = DataLocations.Max(p => p.LocationId)+1,
+                        LocationName = MyNewLocation
+                    };
+                    DataLocations.Add(MyNewLocationData);
+                    try
+                    {
+                        context.SaveChanges();
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+                return false;
             }
         }
     }

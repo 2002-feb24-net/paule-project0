@@ -5,10 +5,10 @@ namespace Objects
 {
     public class Order : ObjectParent
     {
-        public string name {get; set;}
-        public double price {get; set;}
-        public DateTime myDate {get; set;}
-        public List<Stock> MyWrappedItems {get; set;}
+        private string name {get; set;}
+        private double price {get; set;}
+        private DateTime myDate {get; set;}
+        private List<Stock> MyWrappedItems {get; set;}
 
         public Order()
         {

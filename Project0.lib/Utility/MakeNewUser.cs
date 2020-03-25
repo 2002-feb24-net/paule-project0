@@ -1,13 +1,14 @@
 using System;
 using Managers;
+using SaveLoad;
 
 namespace Utility
 {
     public class MakeNewUser
     {
-        PersonManager MyPersonManager;
-        StoreManager MyStoreManager;
-        InputCollector MyInputCollector;
+        private PersonManager MyPersonManager;
+        private StoreManager MyStoreManager;
+        private InputCollector MyInputCollector;
 
         public MakeNewUser(PersonManager ThisPersonManager, StoreManager ThisStoreManager)
         {
@@ -38,6 +39,8 @@ namespace Utility
             string NewPasswordStarred = GetStarredPassword(NewPassword);
 
             MyPersonManager.AddPerson(username:NewUsername,location:NewLocation,password:NewPassword,employee:false);
+            Save MySave = new Save();
+            MySave.SaveAll();
 
             Console.WriteLine("Username: {0}",NewUsername);
             Console.WriteLine("Location: {0}",NewLocation);

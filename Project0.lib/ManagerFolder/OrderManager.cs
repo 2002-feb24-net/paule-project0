@@ -14,6 +14,11 @@ namespace Managers
         private static int OrdersManaged = 0;
         private string CurrentUser = null;
 
+        public Order GetCurrentOrder()
+        {
+            return MyCurrentOrder;
+        }
+
         public OrderManager(MainManager x)
         {
             this.MyMainManager = x;
@@ -93,6 +98,10 @@ namespace Managers
                 {
                     GoodChoice = true;
                 }
+                if (GoodChoice == false)
+                {
+                    Console.WriteLine("That number is not on the list!");
+                }
             }
             if (choice == 0)
             {
@@ -110,6 +119,9 @@ namespace Managers
             {
                 Console.WriteLine($"Item {i+1}: {MyCurrentStock[i].GetName()}, {MyCurrentStock[i].GetPrice()} , {MyCurrentStock[i].GetDescription()}");
             }
+            Console.WriteLine();
+            Console.WriteLine("Press enter to continue.");
+            Console.ReadLine();
         }
 
         public int GetOrderCount(string x)

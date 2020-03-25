@@ -73,7 +73,10 @@ namespace Managers
                     else
                     {
                         Console.WriteLine("Access denied! Please contact a system admin if you think this is an error. They can be reached at hr@revature.com");
+                        Console.WriteLine("Press enter to continue.");
+                        Console.ReadLine();
                     }
+                    choice = 0;
                 }
                 else if (choice == 5)
                 {

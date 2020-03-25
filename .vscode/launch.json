@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/paule-project0/MainFile.app/bin/Debug/netcoreapp3.1/MainFile.dll",
+            "program": "${workspaceFolder}/MainFile.app/bin/Debug/netcoreapp3.1/MainFile.app.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Project0",
+            "cwd": "${workspaceFolder}/MainFile.app",
             "console": "internalConsole",
             "stopAtEntry": false
         },

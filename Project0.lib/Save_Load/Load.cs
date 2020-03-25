@@ -10,9 +10,9 @@ namespace SaveLoad
 {
     public class Load
     {
-        PersonManager MyPersonManager;
-        StoreManager MyStoreManager;
-        OrderManager MyOrderManager;
+        private PersonManager MyPersonManager;
+        private StoreManager MyStoreManager;
+        private OrderManager MyOrderManager;
         public void LoadAllInfo(PersonManager MyPersonManager,StoreManager MyStoreManager,OrderManager MyOrderManager)
         {
             this.MyPersonManager = MyPersonManager;
@@ -107,8 +107,6 @@ namespace SaveLoad
         {
             Dictionary<string,Person> MyPersonDictionary = new Dictionary<string,Person>();
 
-            Person MyPerson = new Person();
-
             using (var context = new PersonDbContext())
             {
                 List<People> MyPeople = context.People
@@ -118,6 +116,7 @@ namespace SaveLoad
                 
                 foreach (var val in MyPeople)
                 {
+                    Person MyPerson = new Person();
                     MyPerson.SetPassword(val.Password);
                     MyPerson.SetName(val.Username);
                     MyPerson.SetEmployeeTag(val.Employee);

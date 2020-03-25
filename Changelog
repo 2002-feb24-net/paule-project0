@@ -1,3 +1,23 @@
+3/24/20
+    Fixed null error bug.
+    Edited order updating and new order creation. Should now work (serverside) as expected
+        Client side should function the exact same
+    Fixed bugs related to paying
+    Fixed bugs related to call order of item transfers and removals
+    Added the ability to create a new location through admin
+    changed many input check loops to give better feedback when input fails
+    can now add and remove items through admin
+    users can now order (fixed null error)
+    now saves users to data base after creation instead of at the end of the program
+    XML Commits done on: 
+        Main, EmployeeManager, IManagerParent, 
+    fixed bug with removing stock from large stock lists
+    known bug related to creating new topics
+    known bug related to account info changes only being client-side
+    added background pic
+    fixed a bug with logging in as an existing user
+
+
 3/23/20
     Revamped database (now better structured)
     All data can be loaded successfully from the database
@@ -14,7 +34,7 @@
         needs logic for removing objects, but adding objects is there
     ......lots of room for bugs and errors. Needs cleanup
     Known null error related to max and store/order stock ids
-        this error is guarenteed to fire at the moment for a new user when adding items to cart
+        this error is guaranteed to fire at the moment for a new user when adding items to cart
     
 
 3/22/20
@@ -112,12 +132,12 @@
     Working username database
     working way to register
     working way to set password
-        included many checks and failsafes
+        included many checks and fail safes
     bad word filter for usernames
     incomplete data fields for objects and managers
     many new methods for person manager, store manager, inputcollector, mainmanager
     added stock and stock manager
-    just realized I didnt use the creators at all
+    just realized I didn't use the creators at all
         need to rewrite the code to include them or delete them
     heavy console based code in input collector and main manager
     build ends upon successfully entering a valid username

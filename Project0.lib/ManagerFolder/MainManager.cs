@@ -5,6 +5,9 @@ using SaveLoad;
 
 namespace Managers
 {
+    /// <summary>
+    ///  This class is main logic handler. The overmind that links all of the managers together. Any branch of logic can be reached from here.
+    /// </summary>
     public class MainManager
     {
         private InputCollector MyInputCollector = new InputCollector();
@@ -18,6 +21,8 @@ namespace Managers
             MyOrderManager = new OrderManager(this);
             Load y = new Load();
             y.LoadAllInfo(MyPersonManager,MyStoreManager,MyOrderManager);
+            Save z = new Save();
+            z.LoadAll(this,MyPersonManager,MyStoreManager,MyOrderManager);
             MyMenuManager = new MenuManager(MyInputCollector,MyPersonManager,MyStoreManager,MyOrderManager);
         }
         public void Initialize()
@@ -39,12 +44,14 @@ namespace Managers
                 input = MyInputCollector.GetPassword();
                 VerifiedUser = MyPersonManager.CheckCurrentPassword(input);
             }
+            Save MySave = new Save();
+            MySave.SaveAll();
         }
 
         private void WelcomeMessage()
         {
             Console.Clear();
-            Console.WriteLine("Hello and welcome to Paul's Totally (not) Sketchy Used Goods!");
+            Console.WriteLine("Hello and welcome to Paul's (Totally not Sketchy) Used Goods!");
             Console.WriteLine("Please log in! If you do not have an account please type: SIGNUP");
         }
 
@@ -68,7 +75,7 @@ namespace Managers
             MyMenuManager.InitializeMainMenu();
             // only reaches here after quitting
             Save z = new Save();
-            z.SaveAll(this,MyPersonManager,MyStoreManager,MyOrderManager);
+            z.SaveAll();
         }
 
         private void SetToCurrentGlobal(Person x)

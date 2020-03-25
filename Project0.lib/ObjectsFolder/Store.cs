@@ -8,7 +8,7 @@ namespace Objects
 {
     public class Store : ObjectParent
     {
-        public string location {get; set;}
+        private string location {get; set;}
         private OrderManager MyOrderManager;
 
         private List<string> MyStoreTopics = new List<string>{};
@@ -31,11 +31,6 @@ namespace Objects
         public string GetName()
         {
             return this.location;
-        }
-
-        public Dictionary<string,List<Stock>> GetMyStock()
-        {
-            return this.MyStock;
         }
 
         public void SetMyStock(Dictionary<string,List<Stock>> MyStock)
@@ -70,6 +65,7 @@ namespace Objects
             Console.WriteLine("What are you looking for?");
             Console.WriteLine();
             Console.WriteLine("Sections: ");
+            Console.WriteLine();
 
             for(int i = 0; i<MyStoreTopics.Count;i++)
             {
@@ -138,9 +134,9 @@ namespace Objects
                 return 0;
             } 
             Save MySaver = new Save();
+            MyOrderManager.AddToCurrentOrder(MyStock[MyStoreTopics[x-1]][input-1]);
             MySaver.SwapToOrder(activeList[input-1].GetName());
             Console.WriteLine($"{activeList[input-1].GetName()} has been added to your order. ");
-            MyOrderManager.AddToCurrentOrder(MyStock[MyStoreTopics[x-1]][input-1]);
             MyStock[MyStoreTopics[x-1]].RemoveAt(input-1);
             Console.WriteLine();
             Console.WriteLine("Press enter to continue.");

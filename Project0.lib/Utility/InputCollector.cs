@@ -126,6 +126,15 @@ namespace Utility
             return x;
         }
 
+        public string InputState()
+        {
+            Console.WriteLine("Abbreviation is preferred for the state, but is not required.");
+            Console.Write("State: ");
+            string x = Console.ReadLine();
+            x = ConvertToPureString(x);
+            return x;
+        }
+
         public string ConvertToPureString(string x)
         {
             char[] arr = x.ToCharArray();
