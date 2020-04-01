@@ -103,7 +103,7 @@ namespace Managers
 
         /// <summary>
         ///  This method welcomes you to the branch of logic that you have just arrived at. It also is one of the last console write lines when exiting the program,
-        ///  because it is called with input 5 when choosing to exit.
+        ///  because it is called with input 5 when choosing to exit. Uses an if else statement.
         /// </summary>
         private void WelcomeMessageMenu(int x)
         {
